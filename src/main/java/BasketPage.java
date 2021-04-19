@@ -12,7 +12,11 @@ public class BasketPage {
     private int extraLinesIntable = 4;
     private List<WebElement> rows = new ArrayList<>();
 
-
+    /**
+     * Метод удаляет все товары из корзины один за другим, после каждого удаления ждет, пока внизу обновится таблица
+     * @return текущую страницу
+     * @throws InterruptedException
+     */
     public BasketPage deleteProduct() throws InterruptedException {
         if (Driver.getInstance().findElements(shortcut).size() > 0) {
             Thread.sleep(1000);

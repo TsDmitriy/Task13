@@ -60,6 +60,10 @@ public class Helpers {
         return Driver.getInstance().findElement(by);
     }
 
+    /**
+     * Метод проверяет, что элемент присутствует в DOM страницы, является видимым.
+     * @param by путь до элемента в DOM
+     */
     public static void visibilityOf(By by) {
         WebElement webElement= Helpers.presenceOfElementLocated(by);
         new WebDriverWait(Driver.getInstance(), 15)
@@ -67,11 +71,21 @@ public class Helpers {
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
+    /**
+     * Метод ожидает, что элемента больше нет.
+     * @param webElement  веб элемент
+     */
     public static void stalenessOf(WebElement webElement) {
         new WebDriverWait(Driver.getInstance(), 15)
                 .withMessage("Элемент"+webElement+"не присутствует в DOM страницы, или является невидимым.")
                 .until(ExpectedConditions.stalenessOf(webElement));
     }
+
+    /**
+     * Метод ожидает, присутствует ли данный текст в указанном элементе.
+     * @param by путь до элемента в DOM
+     * @param text текст
+     */
     public static void textToBePresentInElement(By by, String text) {
         WebElement webElement= Helpers.presenceOfElementLocated(by);
         new WebDriverWait(Driver.getInstance(), 15)
@@ -79,6 +93,10 @@ public class Helpers {
                 .until(ExpectedConditions.textToBePresentInElement(webElement,text ));
     }
 
+    /**
+     * Метод кликает по элементу с попощью js
+     * @param by путь до элемента в DOM
+     */
     public static void clickJs(By by) {
         WebElement webElement= Helpers.presenceOfElementLocated(by);
         JavascriptExecutor executor = (JavascriptExecutor) Driver.getInstance();
