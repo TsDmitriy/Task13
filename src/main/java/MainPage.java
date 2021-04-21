@@ -36,7 +36,7 @@ public class MainPage {
         return new CreateAccountPage();
     }
 
-    public HomeUserPage loginInLiteCart() {
+    public HomeUserPage loginInLiteCart() throws InterruptedException {
         Helpers.sendKeys(email,Stash.getValue("loginEmail"));
         Helpers.sendKeys(password,Stash.getValue("password"));
         Helpers.click(login);

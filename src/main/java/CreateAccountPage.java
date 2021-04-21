@@ -10,7 +10,9 @@ public class CreateAccountPage {
     private By adressOne = By.name("address1");
     private By postcode = By.name("postcode");
     private By city = By.name("city");
-    private By country = By.xpath("//select[@name=\"country_code\"]");
+    private By countryField = By.xpath("//*[@class=\"select2-selection__rendered\"]");
+    private By searchField = By.className("select2-search__field");
+    private By resultSearch = By.className("select2-results__option");
     private By email = By.name("email");
     private By phone = By.name("phone");
     private By  desiredPassword = By.name("password");
@@ -30,8 +32,9 @@ public class CreateAccountPage {
         Helpers.sendKeys(adressOne,"ул.Ленина 338");
         Helpers.sendKeys(postcode,"33333");
         Helpers.sendKeys(city,"Нижний Новгород");
-        Select sele = new Select(Helpers.presenceOfElementLocated(country));
-        sele.selectByVisibleText("United States");
+        Helpers.click(countryField);
+        Helpers.sendKeys(searchField,"United States");
+        Helpers.click(resultSearch);
         Helpers.sendKeys(email,loginEmail);
         Helpers.sendKeys(phone,randomValue);
         Helpers.sendKeys(desiredPassword,randomValue);
