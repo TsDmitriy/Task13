@@ -23,19 +23,19 @@ public class BasketPage {
             Helpers.click(shortcut);
         }
         WebElement table = Helpers.presenceOfElementLocated(tableProduct);
-        rows.addAll(table.findElements(row));
         int countProduct = rows.size() - extraLinesIntable;
 
         for (int i = 1; i <= countProduct; i++) {
             Helpers.click(buttonDelete);
-            Helpers.stalenessOf(rows.get(1));
+            Helpers.stalenessOf(table);
             rows.clear();
             if (i < countProduct) {
                 table = Helpers.presenceOfElementLocated(tableProduct);
-                rows.addAll(table.findElements(row));
+
             }
         }
         return this;
     }
+
 }
 

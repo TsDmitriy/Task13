@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Helpers {
@@ -103,6 +104,18 @@ public class Helpers {
         executor.executeScript("arguments[0].click();", webElement);
     }
 
+
+    public static void choiceElementInSelect(Select select) {
+
+        JavascriptExecutor executor = (JavascriptExecutor) Driver.getInstance();
+        executor.executeScript("arguments[0].selectedIndex=3;", select);
+    }
+
+    public static void scrollElement (By by ) {
+        WebElement webElement=Helpers.presenceOfElementLocated(by);
+        JavascriptExecutor executor = (JavascriptExecutor) Driver.getInstance();
+        executor.executeScript("arguments[0].scrollIntoView(true);", webElement);
+    }
 }
 
 
