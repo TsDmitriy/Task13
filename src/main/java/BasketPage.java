@@ -1,16 +1,31 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BasketPage {
-    private By buttonDelete = By.xpath("//*[@value=\"Remove\"][1]");
-    private By shortcut = By.xpath("//*[@class=\"shortcuts\"]//a");
-    private By tableProduct = By.id("order_confirmation-wrapper");
-    private By row = By.xpath(".//tr[not(contains(@class, 'header'))]");
+
+    @FindBy(xpath = "//*[@value=\"Remove\"][1]")
+    private WebElement buttonDelete;
+
+    @FindBy(xpath = "//*[@class=\"shortcuts\"]//a")
+    private WebElement shortcut;
+
+    @FindBy(id = "order_confirmation-wrapper")
+    private WebElement tableProduct;
+
+    @FindBy(xpath = ".//tr[not(contains(@class, 'header'))]")
+    private WebElement row;
+
     private int extraLinesIntable = 4;
     private List<WebElement> rows = new ArrayList<>();
+
+    public BasketPage() {
+        PageFactory.initElements(Driver.getInstance(),this);
+    }
 
     /**
      * Метод удаляет все товары из корзины один за другим, после каждого удаления ждет, пока внизу обновится таблица
@@ -18,11 +33,11 @@ public class BasketPage {
      * @throws InterruptedException
      */
     public BasketPage deleteProduct() throws InterruptedException {
-        if (Driver.getInstance().findElements(shortcut).size() > 0) {
+        if (Driver.getInstance().findElements(By.xpath("//*[@class=\"shortcuts\"]//a")).size() > 0) {
             Thread.sleep(1000);
             Helpers.click(shortcut);
         }
-        WebElement table = Helpers.presenceOfElementLocated(tableProduct);
+        WebElement table = Helpers.visibilityOf(tableProduct);
         int countProduct = rows.size() - extraLinesIntable;
 
         for (int i = 1; i <= countProduct; i++) {
@@ -30,7 +45,7 @@ public class BasketPage {
             Helpers.stalenessOf(table);
             rows.clear();
             if (i < countProduct) {
-                table = Helpers.presenceOfElementLocated(tableProduct);
+                table = Helpers.visibilityOf(tableProduct);
 
             }
         }

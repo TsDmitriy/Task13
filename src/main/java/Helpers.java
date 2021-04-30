@@ -19,10 +19,10 @@ public class Helpers {
      * Метод проверяет кликабелен ли элемент, если да, то кликает по нему
      * @param by путь до элемента в DOM
      */
-    public static void click(By by) {
+    public static void click(WebElement webElement) {
         new WebDriverWait(Driver.getInstance(), 30)
-                .withMessage("Элемент"+by+"некликабелен")
-                .until(ExpectedConditions.elementToBeClickable(by))
+                .withMessage("Элемент"+webElement+"некликабелен")
+                .until(ExpectedConditions.elementToBeClickable(webElement))
                 .click();
     }
 
@@ -50,26 +50,14 @@ public class Helpers {
     }
 
     /**
-     * Метод проверет виден ли элемент в дом, если виден возвращает элемент
-     * @param by путь до элемента в DOM
-     * @return найденный WebElement
-     */
-    public static WebElement presenceOfElementLocated(By by) {
-        new WebDriverWait(Driver.getInstance(), 15)
-                .withMessage("Элемент"+by+"не виден в DOM")
-                .until(ExpectedConditions.presenceOfElementLocated(by));
-        return Driver.getInstance().findElement(by);
-    }
-
-    /**
      * Метод проверяет, что элемент присутствует в DOM страницы, является видимым.
-     * @param by путь до элемента в DOM
+     * @param webElement
      */
-    public static void visibilityOf(By by) {
-        WebElement webElement= Helpers.presenceOfElementLocated(by);
+    public static WebElement visibilityOf(WebElement webElement) {
         new WebDriverWait(Driver.getInstance(), 15)
-                .withMessage("Элемент"+by+"не присутствует в DOM страницы, или является невидимым.")
+                .withMessage("Элемент"+webElement+"не присутствует в DOM страницы, или является невидимым.")
                 .until(ExpectedConditions.visibilityOf(webElement));
+        return webElement;
     }
 
     /**
@@ -84,22 +72,20 @@ public class Helpers {
 
     /**
      * Метод ожидает, присутствует ли данный текст в указанном элементе.
-     * @param by путь до элемента в DOM
+     * @param webElement
      * @param text текст
      */
-    public static void textToBePresentInElement(By by, String text) {
-        WebElement webElement= Helpers.presenceOfElementLocated(by);
+    public static void textToBePresentInElement(WebElement webElement, String text) {
         new WebDriverWait(Driver.getInstance(), 15)
-                .withMessage("Элемент"+by+"не присутствует в DOM страницы, или является невидимым.")
+                .withMessage("Элемент"+webElement+"не присутствует в DOM страницы, или является невидимым.")
                 .until(ExpectedConditions.textToBePresentInElement(webElement,text ));
     }
 
     /**
      * Метод кликает по элементу с попощью js
-     * @param by путь до элемента в DOM
+     * @param webElement путь до элемента в DOM
      */
-    public static void clickJs(By by) {
-        WebElement webElement= Helpers.presenceOfElementLocated(by);
+    public static void clickJs(WebElement webElement) {
         JavascriptExecutor executor = (JavascriptExecutor) Driver.getInstance();
         executor.executeScript("arguments[0].click();", webElement);
     }
@@ -112,7 +98,7 @@ public class Helpers {
     }
 
     public static void scrollElement (By by ) {
-        WebElement webElement=Helpers.presenceOfElementLocated(by);
+        WebElement webElement=Helpers.visibilityOf(Driver.getInstance().findElement(by));
         JavascriptExecutor executor = (JavascriptExecutor) Driver.getInstance();
         executor.executeScript("arguments[0].scrollIntoView(true);", webElement);
     }

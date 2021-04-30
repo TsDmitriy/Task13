@@ -9,25 +9,10 @@ public class TestTask13 extends TestBase{
         new GoToMainPage()
                 .goToMainPage()
                 .goToProductPage()
-                .addCartProduct()
-                .waitUpdateCounter()
-                .goToMainPage()
-                .goToProductPage()
-                .addCartProduct()
-                .waitUpdateCounter()
-                .goToMainPage()
-                .goToProductPage()
-                .addCartProduct()
-                .waitUpdateCounter()
+                .addThreeProductInBasket()
                 .goToBasketPage()
                 .deleteProduct();
-
-
-
-
-
-
-    }
+ }
 
 
 }
