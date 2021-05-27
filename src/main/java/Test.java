@@ -6,12 +6,12 @@ public class Test {
 
     //считаем факториал числа
     ///для практики
-    public static int getFactorial(int f) {
+    public static int getFactorial1(int f) {
         if (f <= 1) {
             return 1;
         }
         else {
-            return f * getFactorial(f - 1);
+            return f * getFactorial1(f - 1);
         }
     }
 
