@@ -5,6 +5,7 @@ public class Test {
     }
 
     //считаем факториал числа
+    ///для практики
     public static int getFactorial(int f) {
         if (f <= 1) {
             return 1;
