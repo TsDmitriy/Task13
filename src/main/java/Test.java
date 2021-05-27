@@ -1,7 +1,7 @@
 public class Test {
 
     public static void main(String[] args) {
-        getFactorial13(3);
+        getFactorial1333(3);
     }
 
     //считаем факториал числа
