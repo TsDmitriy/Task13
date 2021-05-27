@@ -1,17 +1,17 @@
 public class Test {
 
     public static void main(String[] args) {
-        getFactorial1(3);
+        getFactorial(3);
     }
 
     //считаем факториал числа
     ///для практики
-    public static int getFactorial1(int f) {
+    public static int getFactorial(int f) {
         if (f <= 1) {
             return 1;
         }
         else {
-            return f * getFactorial1(f - 1);
+            return f * getFactorial(f - 1);
         }
     }
 
