@@ -17,7 +17,6 @@ public class Helpers {
 
     /**
      * Метод проверяет кликабелен ли элемент, если да, то кликает по нему
-     * @param by путь до элемента в DOM
      */
     public static void click(WebElement webElement) {
         new WebDriverWait(Driver.getInstance(), 30)

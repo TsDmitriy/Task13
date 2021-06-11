@@ -1,19 +1,26 @@
 public class Test {
 
     public static void main(String[] args) {
-        getFactorial13(3);
+        getFactorial(3);
+        getFactorial3(0);
     }
 
-    //считаем факториал числа
-    ///для практики
-    public static int getFactorial13(int f) {
+    public static int getFactorial(int f) {
         if (f <= 1) {
             return 1;
+        } else {
+            return f * getFactorial(f - 1);
         }
-        else {
-            return f * getFactorial13(f - 1);
-        }
-    }
 
     }
+
+    public static int getFactorial3(int f) {
+        int result = 1;
+        for (int i = 1; i <= f; i++) {
+            result = result * i;
+        }
+        System.out.println(result);
+        return result;
+    }
+}
 
