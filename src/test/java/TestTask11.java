@@ -11,7 +11,7 @@ public class TestTask11 extends TestBase{
                 .goToCreateAccountPage()
                 .createAccount()
                 .goToMainPage()
-                .loginInLiteCart();
+                .loginInLiteCart()1;
 
     }
 
