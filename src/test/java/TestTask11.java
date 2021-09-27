@@ -14,6 +14,4 @@ public class TestTask11 extends TestBase{
                 .loginInLiteCart();
 
     }
-
-
 }
