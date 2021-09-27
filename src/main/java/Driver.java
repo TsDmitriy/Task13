@@ -19,7 +19,7 @@ public class Driver {
      * Метод проверяет есть ли instance WebDriver, если нет, то создает новый
      * @return instance
      */
-    public static WebDriver getInstance() {
+    public static synchronized WebDriver getInstance() {
         if (instance == null) {
 
             System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32\\chromedriver.exe");
